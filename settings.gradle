@@ -2,4 +2,5 @@ rootProject.name = 'April-project'
 include 'April-user'
 include 'April-main'
 include 'April-ufc'
+include 'April-infra'
 
