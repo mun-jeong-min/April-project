@@ -5,8 +5,10 @@ plugins {
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 jar {
-    enabled = false
+    enabled = true
 }

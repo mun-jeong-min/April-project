@@ -5,8 +5,25 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":April-user"))
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'mysql:mysql-connector-java:8.0.11'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.6.3'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }
 
 jar {
-    enabled = false
+    enabled = true
 }

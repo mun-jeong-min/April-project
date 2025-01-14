@@ -1,4 +1,3 @@
 rootProject.name = 'April-project'
-include 'April-user'
-include 'April-infra'
-
+include ':April-user'
+include ':April-infra'
