@@ -1,15 +1,14 @@
 package com.example.aprilproject.domain.user.adapter;
 
-import com.example.aprilproject.domain.user.dto.UserResponse;
 import com.example.aprilproject.domain.user.entity.User;
-import com.example.aprilproject.domain.user.port.LoginPort;
+import com.example.aprilproject.domain.user.port.SignupPort;
 import com.example.aprilproject.annotation.UseCase;
 import com.example.aprilproject.domain.user.repository.SaveUserSpi;
 import lombok.RequiredArgsConstructor;
 
 @UseCase
 @RequiredArgsConstructor
-public class LoginAdapter implements LoginPort {
+public class SignupAdapter implements SignupPort {
 
     private final SaveUserSpi saveUserSpi;
 

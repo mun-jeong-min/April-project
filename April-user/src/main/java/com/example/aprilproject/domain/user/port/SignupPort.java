@@ -1,7 +1,5 @@
 package com.example.aprilproject.domain.user.port;
 
-import com.example.aprilproject.domain.user.dto.UserResponse;
-
-public interface LoginPort {
+public interface SignupPort {
     void saveUser(String name, String pw, String email);
 }
