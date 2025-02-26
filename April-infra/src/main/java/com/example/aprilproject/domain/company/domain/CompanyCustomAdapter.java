@@ -1,19 +1,24 @@
 package com.example.aprilproject.domain.company.domain;
 
 import com.example.aprilproject.domain.company.domain.repository.CompanyRepository;
+import com.example.aprilproject.domain.company.dto.CompanyInfosResponse;
 import com.example.aprilproject.domain.company.exception.CompanyNotFoundException;
 import com.example.aprilproject.domain.company.facade.CikCodeDto;
 import com.example.aprilproject.domain.company.facade.CompanyDto;
 import com.example.aprilproject.domain.company.facade.CompanyFacade;
 import com.example.aprilproject.domain.company.mapper.CompanyMapper;
 import com.example.aprilproject.domain.company.repository.SaveInfoSpi;
+import com.example.aprilproject.domain.company.repository.ShowInfoSpi;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Repository
-public class CompanyCustomAdapter implements SaveInfoSpi {
+public class CompanyCustomAdapter implements SaveInfoSpi, ShowInfoSpi {
 
     private final CompanyMapper companyMapper;
     private final CompanyRepository companyRepository;
@@ -61,5 +66,20 @@ public class CompanyCustomAdapter implements SaveInfoSpi {
                         .cikCode(cikCodeDto.getCikStr())
                         .build()
         );
+    }
+
+    @Transactional
+    public List<CompanyInfosResponse> showInfo() {
+
+        return companyRepository.findAll().stream()
+                .map(company -> new CompanyInfosResponse(
+                        company.getName(),
+                        company.getInfo(),
+                        company.getCikCode(),
+                        company.getDef14a(),
+                        company.getEightK(),
+                        company.getTenK()
+                ))
+                .toList();
     }
 }
