@@ -7,17 +7,10 @@ import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @Component
 public class CompanyFacade {
-
-    public static void main(String[] args) {
-        CompanyFacade companyFacade = new CompanyFacade();
-        companyFacade.getCompanyInfo(320193);
-    }
 
     public CikCodeDto getCikCode(String name){
         CikCodeDto cikCodeDto = new CikCodeDto();

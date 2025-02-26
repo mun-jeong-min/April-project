@@ -2,17 +2,19 @@ package com.example.aprilproject.domain.company.mapper;
 
 import com.example.aprilproject.domain.company.domain.CompanyEntity;
 import com.example.aprilproject.domain.company.entity.Company;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CompanyMapperImpl implements CompanyMapper{
     @Override
     public CompanyEntity companyDomainToEntity(Company company) {
         return CompanyEntity.builder()
                 .name(company.getName())
                 .info(company.getInfo())
-                .ten_k(company.getTenK())
-                .def_14a(company.getDef_14a())
-                .eight_k(company.getEightK())
-                .cik_code(company.getCikCode())
+                .tenK(company.getTenK())
+                .def14a(company.getDef_14a())
+                .eightK(company.getEightK())
+                .cikCode(company.getCikCode())
                 .build();
     }
 
@@ -22,10 +24,10 @@ public class CompanyMapperImpl implements CompanyMapper{
                 .id(companyEntity.getId())
                 .name(companyEntity.getName())
                 .info(companyEntity.getInfo())
-                .tenK(companyEntity.getTen_k())
-                .def_14a(companyEntity.getDef_14a())
-                .eightK(companyEntity.getEight_k())
-                .cikCode(companyEntity.getCik_code())
+                .tenK(companyEntity.getTenK())
+                .def_14a(companyEntity.getDef14a())
+                .eightK(companyEntity.getEightK())
+                .cikCode(companyEntity.getCikCode())
                 .build();
     }
 }

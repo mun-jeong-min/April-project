@@ -13,6 +13,7 @@ public enum ErrorCode {
     USER_EXIST(401, "CLIENT-401-1", "이미 유저 존재"),
 
     USER_NOT_FOUND(404, "CLIENT-404-1", "User Not Found"),
+    COMPANY_NOT_FOUND(404, "CLIENT_404-2", "Company Not Found"),
 
     INTERNAL_SERVER_ERROR(500, "SERVER-500-1", "Internal Server Error");
 

@@ -1,23 +1,25 @@
 package com.example.aprilproject.domain.company.domain;
 
 import com.example.aprilproject.domain.company.domain.repository.CompanyRepository;
+import com.example.aprilproject.domain.company.exception.CompanyNotFoundException;
 import com.example.aprilproject.domain.company.facade.CikCodeDto;
 import com.example.aprilproject.domain.company.facade.CompanyDto;
 import com.example.aprilproject.domain.company.facade.CompanyFacade;
 import com.example.aprilproject.domain.company.mapper.CompanyMapper;
-import com.example.aprilproject.domain.company.port.SaveInfoPort;
+import com.example.aprilproject.domain.company.repository.SaveInfoSpi;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class CompanyCustomAdapter implements SaveInfoPort {
+public class CompanyCustomAdapter implements SaveInfoSpi {
 
     private final CompanyMapper companyMapper;
     private final CompanyRepository companyRepository;
     private final CompanyFacade companyFacade;
 
-    @Override
+    @Transactional
     public void saveInfo(String name) {
         CikCodeDto cikCodeDto = companyFacade.getCikCode(name);
 
@@ -43,14 +45,20 @@ public class CompanyCustomAdapter implements SaveInfoPort {
                 companyDto.getDef14ADate().replaceAll("-", "")
         );
 
+        // cikCode로 찾고 만약 이미 존재하는 경우 업데이트
+        if(companyRepository.findByCikCode(cikCode).isPresent()) {
+            CompanyEntity company = companyRepository.findByCikCode(cikCode).orElseThrow(() -> CompanyNotFoundException.EXCEPTION);
+            companyRepository.delete(company);
+        }
+
         companyRepository.save(
                 CompanyEntity.builder()
                         .name(cikCodeDto.getTitle())
                         .info(cikCodeDto.getTicker())
-                        .ten_k(tenK)
-                        .eight_k(eightK)
-                        .def_14a(def14A)
-                        .cik_code(cikCodeDto.getCikStr())
+                        .tenK(tenK)
+                        .eightK(eightK)
+                        .def14a(def14A)
+                        .cikCode(cikCodeDto.getCikStr())
                         .build()
         );
     }

@@ -26,18 +26,18 @@ public class CompanyEntity {
 
     @Column(columnDefinition = "VARCHAR(5000)")
     @NotNull
-    private String ten_k;
+    private String tenK;
 
     @Column(columnDefinition = "VARCHAR(5000)")
     @NotNull
-    private String def_14a;
+    private String def14a;
 
     @Column(columnDefinition = "VARCHAR(5000)")
     @NotNull
-    private String eight_k;
+    private String eightK;
 
     @Column(columnDefinition = "int(30)")
     @NotNull
-    private int cik_code;
+    private int cikCode;
 
 }

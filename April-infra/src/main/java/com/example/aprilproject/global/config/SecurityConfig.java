@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/company/save").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .with(new FilterConfig(objectMapper, jwtTokenProvider), customizer -> {})

@@ -1,21 +1,21 @@
 package com.example.aprilproject.domain.company.presentation;
 
+import com.example.aprilproject.domain.company.port.SaveInfoPort;
 import com.example.aprilproject.domain.company.presentation.dto.CompanyInfoSaveRequest;
-import com.example.aprilproject.domain.company.repository.SaveInfoSpi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/user")
+@RequestMapping("/company")
 @RestController
 @RequiredArgsConstructor
 public class CompanyController {
 
-    private final SaveInfoSpi saveInfoSpi;
+    private final SaveInfoPort saveInfoPort;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/company")
+    @PostMapping("/save")
     public void saveInfo(@RequestBody CompanyInfoSaveRequest request) {
-        saveInfoSpi.saveInfo(request.getName());
+        saveInfoPort.saveInfo(request.getName());
     }
 }
